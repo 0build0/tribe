@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cq.tribe.dao.CqAttributeKeyMapper">
+    <insert id="addAttribute">
+        INSERT INTO cq_attribute_key(name,is_delete,create_time,update_time,ts) values (#{name},0,now(),now(),now())
+    </insert>
+    <select id="attrList" resultSets="java.util.List" resultType="com.cq.tribe.common.AttrKeyBean">
+        SELECT id,name,is_delete,create_time,update_time,ts FROM cq_attribute_key WHERE is_delete = 0
+    </select>
+</mapper>
