@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-bp15t0ny324ix0495fo.mysql.rds.aliyuncs.com:3306/chaiquan?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    username: erying
+    password: Erying@0118
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
