@@ -6,32 +6,34 @@ import com.qiniu.storage.Configuration;
 import com.qiniu.storage.Region;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
+import org.springframework.stereotype.Service;
 
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-
+@Service
 public class UpdateMediaServiceImpl implements UpdateMediaService {
     @Override
-    public void updateMedia() {
+    public boolean updateMedia(InputStream inputStream,String name) {
+
+        boolean result = true;
 
         Configuration config = new Configuration(Region.region1());
-
         UploadManager uploadManager = new UploadManager(config);
         String accessKey = "cp0ycHI57QxC0LrjHx6yR_E6hfZkEwfF585thf2Y";
         String secretKey = "8MnWaPV00mWOtMnbzJCOVxOJ0wmV7ZR9guiFwDB_";
         String bucket = "cqtribe";
-        String localFilePath = "D:\\11.mp4";
-
         Auth auth = Auth.create(accessKey,secretKey);
         String upToken = auth.uploadToken(bucket);
-
         try {
-            Response response = uploadManager.put(localFilePath, "001", upToken);
+            Response response = uploadManager.put(inputStream, name, upToken, null, null);
             System.out.println(response.bodyString());
         }catch (Exception e) {
+            result = false;
             e.printStackTrace();
         }
+        return result;
 
     }
 

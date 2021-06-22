@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cq.tribe.dao.CqMediaInfoMapper">
+    
+    <resultMap id="Base_Map" type="com.cq.tribe.common.MediaBean">
+        <result property="id" column="id"/>
+        <result property="mediaType" column="media_type"/>
+        <result property="mediaName" column="media_name"/>
+        <result property="mediaDesc" column="media_desc"/>
+        <result property="cqId" column="cq_id"/>
+        <result property="sort" column="sort"/>
+        <result property="isDelete" column="is_delete"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createUser" column="create_time"/>
+        <result property="updateUser" column="update_user"/>
+    </resultMap>
+    
+    <insert id="addMedia">
+        INSERT INTO cq_media_info(media_type,media_name,media_desc,cq_id,sort,is_delete,create_time,update_time,create_user,update_user)
+        VALUES(#{mediaType},#{mediaName},#{mediaDesc},#{cqId},#{sort},0,now(),now(),#{createUser},#{updateUser})
+    </insert>
+
+    <select id="selectPage" resultType="com.cq.tribe.common.MediaBean" resultMap="Base_Map">
+        select * from cq_media_info
+    </select>
+</mapper>
