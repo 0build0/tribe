@@ -17,6 +17,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public List<GoodsBean> goodsListPage() {
-        return goodsInfoMapper.getGoodsPage();
+        List<GoodsBean> goodsPage = goodsInfoMapper.getGoodsPage();
+        return goodsPage;
     }
 }
